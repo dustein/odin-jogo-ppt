@@ -20,16 +20,30 @@ function playRound(computer, userInput) {
     return jogadas + "user GANHOU! Tesoura corta Papel"
   } else if (computer === "tesoura" && user === "papel") {
     return jogadas + "computer VENCEU! Tesoura corta Papel"
-  } else if (computer === "tesoura" && user === "pedra") {
-    return jogadas + "user GANHOU! Pedra quebra a Tesoura"
-  } else {
+  } else if (computer === user) {
     return jogadas + "Deu EMPATE ! Escolheram a mesma aposta..."
+  } else {
+    return jogadas + "user GANHOU! Pedra quebra a Tesoura"
   }
 }
 
+function game(computer, userInput) {
+
+  
+  for (i=1; i<=5; i++) {
+    computer = pcPlay();
+    userInput = prompt("Escolha: pedra  ou   papel  ou  tesoura ")
+    // playRound();
+    console.log("compute " + computer + " user " + userInput)
+    console.log(playRound());
+  }
+  console.log("ended")
+}
+
 let computer = pcPlay();
-let user = prompt("Escolha: pedra  ou   papel  ou  tesoura ")
-let round = playRound(computer, user)
+// let user = prompt("Escolha: pedra  ou   papel  ou  tesoura ")
+let round = game()
+
 
 console.log(round)
 
