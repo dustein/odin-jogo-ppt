@@ -37,7 +37,7 @@ function game(computerInput, userInput) {
   let computerScore = 0;
   let userScore = 0;
   let tieScore = 0;
-  for (i=1; i<=5; i++) {
+  for (i=1; i!="game"; i++) {
     computerInput = pcPlay();
     userInput = prompt("Escolha: pedra  ou   papel  ou  tesoura ")
 
@@ -53,6 +53,9 @@ function game(computerInput, userInput) {
       tieScore = tieScore + 1
     }
 
+    if (computerScore == 5 || userScore == 5) {
+      i = "game"
+    }
     console.log(`Placar: Computador ${computerScore}, empate ${tieScore}, Voce ${userScore}`)
     // playRound(computerInput, userInput)
 
