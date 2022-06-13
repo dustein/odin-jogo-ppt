@@ -6,70 +6,60 @@ function pcPlay() {
   return gamePlays[pcChoice];
 };
 
-// function playRound(computer, userInput) {
-
-//   let user = userInput.toLowerCase().trim();
-//   let jogadas = `Você escolheu ${user}, o computador escolheu ${computer}... `
-//   if (computer === "pedra" && user === "papel") {
-//     return jogadas + "user GANHOU! Papel enrola Pedra!"
-//   } else if (computer === "pedra" && user === "tesoura") {
-//     return jogadas + "computer VENCEU! Pedra quebra a Tesoura"
-//   } else if (computer === "papel" && user === "pedra") {
-//     return jogadas + "computer VENCEU! Papel enrola a Pedra"
-//   } else if (computer === "papel" && user === "tesoura") {
-//     return jogadas + "user GANHOU! Tesoura corta Papel"
-//   } else if (computer === "tesoura" && user === "papel") {
-//     return jogadas + "computer VENCEU! Tesoura corta Papel"
-//   } else if (computer === user) {
-//     return jogadas + "Deu EMPATE ! Escolheram a mesma aposta..."
-//   } else {
-//     return jogadas + "user GANHOU! Pedra quebra a Tesoura"
-//   }
-// }
 function playRound(computer, user) {
-  console.log("Computador jogou " + computer + ", User jogou " + user)
+  
+  let jogada = `Computador jogou ${computer}, User jogou ${user}...`;
 
   let userInput = user.toLowerCase().trim();
-
+  let result = [];
 
   if (computer === 'pedra' && userInput === 'tesoura') {
-    return "Pedra quebra a Tesoura. Voce PERDEU!";
+    result = [jogada, 1, "Pedra quebra a Tesoura. Voce PERDEU!"]
   } else if (computer === 'pedra' && userInput === 'papel') {
-    return "Papel enrola a Pedra. Voce GANHOU!"
+    result = [jogada, 2, "Papel enrola a Pedra. Voce GANHOU!"]
   } else if (computer === 'papel' && userInput === 'tesoura') {
-    return "Tesoura corta Papel. Voce GANHOU!"
+    result = [jogada, 2, "Tesoura corta Papel. Voce GANHOU!"]
   } else if (computer === 'papel' && userInput === 'pedra') {
-    return "Papel enrola a Pedra. Voce PERDEU!"
+    result = [jogada, 1, "Papel enrola a Pedra. Voce PERDEU!"]
   } else if (computer === 'tesoura' && userInput === 'pedra') {
-    return "Pedra quebra a Tesoura. Voce GANHOU!"
+    result = [jogada, 2, "Pedra quebra a Tesoura. Voce GANHOU!"]
   } else if (computer === 'tesoura' && userInput === 'papel') {
-    return "Tesoura cobrta Papel. Voce PERDEU!"
-  } return "Jogadas iguais. EMPATE!"
+    result = [jogada, 1, "Tesoura corta Papel. Voce PERDEU!"]
+  } else {
+    result = [jogada, 0, "Jogadas iguais. EMPATE!"]
+  }
+
+  return result
 }
 
 function game(computerInput, userInput) {
   
+  let computerScore = 0;
+  let userScore = 0;
+  let tieScore = 0;
   for (i=1; i<=5; i++) {
     computerInput = pcPlay();
     userInput = prompt("Escolha: pedra  ou   papel  ou  tesoura ")
-    // playRound();
-    // console.log("compute " + computer + " user " + userInput)
-    // console.log(playRound());
+
     console.log(`Round ${i} !`)
-    console.log(playRound(computerInput, userInput))
-    playRound(computerInput, userInput)
+    let round = playRound(computerInput, userInput)
+    console.log(round[0], round[2])
+    // playRound(computerInput, userInput)
+    if (round[1] === 1) {
+      computerScore = computerScore + 1
+    } else if (round[1] === 2) {
+      userScore = userScore + 1
+    } else {
+      tieScore = tieScore + 1
+    }
+
+    console.log(`Placar: Computador ${computerScore}, empate ${tieScore}, Voce ${userScore}`)
+    // playRound(computerInput, userInput)
+
   }
   console.log("Jogo Finalizado!")
 }
 
-// let computer = pcPlay();
-// let user = prompt("Escolha: pedra  ou   papel  ou  tesoura ")
 let round = game()
 
-
 console.log(round)
-
-
-// console.log(`jogada PC: ${pcPlay()}`)
-
-// console.log("rodou")
