@@ -28,9 +28,26 @@ function pcPlay() {
 // }
 function playRound(computer, user) {
   console.log("Computador jogou " + computer + ", User jogou " + user)
+
+  let userInput = user.toLowerCase().trim();
+
+
+  if (computer === 'pedra' && userInput === 'tesoura') {
+    return "Pedra quebra a Tesoura. Voce PERDEU!";
+  } else if (computer === 'pedra' && userInput === 'papel') {
+    return "Papel enrola a Pedra. Voce GANHOU!"
+  } else if (computer === 'papel' && userInput === 'tesoura') {
+    return "Tesoura corta Papel. Voce GANHOU!"
+  } else if (computer === 'papel' && userInput === 'pedra') {
+    return "Papel enrola a Pedra. Voce PERDEU!"
+  } else if (computer === 'tesoura' && userInput === 'pedra') {
+    return "Pedra quebra a Tesoura. Voce GANHOU!"
+  } else if (computer === 'tesoura' && userInput === 'papel') {
+    return "Tesoura cobrta Papel. Voce PERDEU!"
+  } return "Jogadas iguais. EMPATE!"
 }
 
-function game(computer, userInput) {
+function game(computerInput, userInput) {
   
   for (i=1; i<=5; i++) {
     computerInput = pcPlay();
@@ -39,9 +56,10 @@ function game(computer, userInput) {
     // console.log("compute " + computer + " user " + userInput)
     // console.log(playRound());
     console.log(`Round ${i} !`)
+    console.log(playRound(computerInput, userInput))
     playRound(computerInput, userInput)
   }
-  console.log("Jogo Finaliado!")
+  console.log("Jogo Finalizado!")
 }
 
 // let computer = pcPlay();
